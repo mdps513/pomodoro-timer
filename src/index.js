@@ -8,8 +8,7 @@ export default class Pomodoro extends Component {
     this.state = {
       isLive: false,
       curTime: 0,
-      startTime: 0,
-      setTime: 0 
+      startTime: 0
     }
     this.timerId = 0
   }
@@ -26,8 +25,9 @@ export default class Pomodoro extends Component {
   
   tick () {
     if (this.state.isLive) {
-      const v = new Date().getTime()
+      const v = this.state.curTime - 1000
       this.setState({curTime: v})
+    
     }
   }
   
@@ -36,28 +36,27 @@ export default class Pomodoro extends Component {
       this.setState({isLive: false})
       return
     }
-    const v = new Date().getTime()
     this.setState({
-      curTime: v,
-      startTime: v,
-      setTime: 1500000,
+      curTime: 1500000,
+      startTime: 1500000,
       isLive: true})
   };
   
   getDisp () {
-    const state = this.state
-    const delta = state.curTime - state.startTime
-    const t = Math.floor(delta / 1000)
-    const s = 
-    const ss = state.setTime - t % 60
-    const m = Math.floor(t / 60)
-    const mm = m % 60
+    // const state = this.state
+    // const delta = state.curTime - state.startTime
+    // const t = Math.floor(delta / 1000)
+    // const s = state.setTime
+    // const ss = state.setTime - t % 60
+    // const m = Math.floor(t / 60)
+    // const mm = m % 60
     const z = (num) => {
       const s = '00' + String(num)
       return state.substr(state.length - 2, 2)
     }
     return <span className='disp'>
-      {z(mm)}:{z(ss)}
+      {this.state.curTime}
+      
     </span>
   }
   
