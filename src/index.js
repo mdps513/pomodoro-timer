@@ -43,20 +43,18 @@ export default class Pomodoro extends Component {
   };
   
   getDisp () {
-    // const state = this.state
-    // const delta = state.curTime - state.startTime
-    // const t = Math.floor(delta / 1000)
-    // const s = state.setTime
-    // const ss = state.setTime - t % 60
-    // const m = Math.floor(t / 60)
-    // const mm = m % 60
+    const state = this.state
+    const delta = state.curTime - state.startTime
+    const t = Math.floor(this.state.curTime / 1000)
+    const ss = t % 60
+    const m = Math.floor(t / 60)
+    const mm = m % 60
     const z = (num) => {
-      const s = '00' + String(num)
+      const ss = '00' + String(num)
       return state.substr(state.length - 2, 2)
     }
     return <span className='disp'>
-      {this.state.curTime}
-      
+      {mm}:{ss}
     </span>
   }
   
